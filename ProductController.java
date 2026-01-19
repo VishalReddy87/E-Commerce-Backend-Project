@@ -1,0 +1,27 @@
+package com.example.ecommerce.controller;
+
+import com.example.ecommerce.model.Product;
+import com.example.ecommerce.service.ProductService;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/products")
+public class ProductController {
+
+    private final ProductService service;
+
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public Product add(@RequestBody Product product) {
+        return service.save(product);
+    }
+
+    @GetMapping
+    public List<Product> all() {
+        return service.getAll();
+    }
+}
